@@ -1,13 +1,24 @@
 package com.kodilla.tictactoe_kodilla;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
 class TicTacToeKodillaApplicationTests {
 
-   @Test
-   void contextLoads() {
+   @Nested
+   @DisplayName("Tests for mechanics")
+   class TestsForMechanics {
+
+      @Test
+      void shouldAcceptOnlyXorO() {
+      }
+   }
+
+   @Nested
+   @DisplayName("Tests for board")
+   class TestsForBoard {
+
    }
 
 }
