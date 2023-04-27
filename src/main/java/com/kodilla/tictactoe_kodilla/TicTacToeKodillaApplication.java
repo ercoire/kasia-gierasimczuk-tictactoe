@@ -4,10 +4,11 @@ package com.kodilla.tictactoe_kodilla;
 public class TicTacToeKodillaApplication {
 
    public static void main(String[] args) {
-      Game mech = new Game();
-      Player player = new Player();
+      Game game = new Game();
+      //Player player = new Player();
 
-      mech.gameBeginning(player);
+      game.gameBeginning();
+      game.boardPresentation();
 
    }
 

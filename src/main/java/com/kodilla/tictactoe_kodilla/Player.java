@@ -14,7 +14,7 @@ public class Player {
 //   }
 
    // what they do to play
-   Player player = new Player();
+
 
    public Board moveOfX(){
      /* player chooses position

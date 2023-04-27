@@ -9,19 +9,33 @@ public class Game {
 
    // keeping score valuation and win/draw criteria
 
-   public String gameBeginning(Player player) {
-      System.out.println("Hello Player, choose your mark - X or O");
+   public Character gameBeginning() {
+      System.out.println("Hello Player, choose your mark - x or o");
       //foolproof
-      String charPlayer1 = scan.next();
-      if (charPlayer1.equals('o')) {
-         System.out.println("Your mark is " + charPlayer1);
-      } else if (charPlayer1.equals('x')) {
-         System.out.println("Your mark is " + charPlayer1);
+      Character charPlayer1;
+      String temp = scan.next();
+      //check if string length = 1
+      if (temp.length() == 1) {
+         //convert to char
+         charPlayer1 = scan.next().charAt(0);
+         //check if x/o
+         if (charPlayer1.equals('o')) {
+            System.out.println("Your mark is " + charPlayer1);
+            return charPlayer1;
+         } else if (charPlayer1.equals('x')) {
+            System.out.println("Your mark is " + charPlayer1);
+            return charPlayer1;
+         } else {
+            System.out.println("Can't accept this, choose between x and o.");
+         }
       } else {
          System.out.println("Can't accept this, choose between x and o.");
+
+
       }
-      return charPlayer1;
+      return null;
    }
+
 
    public void boardPresentation() {
       Board board = new Board();
