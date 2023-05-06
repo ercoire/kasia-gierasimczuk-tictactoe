@@ -2,37 +2,33 @@ package com.kodilla.tictactoe_kodilla;
 
 public class Player {
 
-//   private char x = 'x';
-//   private char o = 'o';
-//
-//   public char getX() {
-//      return x;
-//   }
-//
-//   public char getO() {
-//      return o;
-//   }
+   private char mark;
+   private UserInput input;
+   private UserOutput output;
 
-   // what they do to play
-
-
-   public Board moveOfX(){
-     /* player chooses position
-      mark is placed
-      mark added to board,
-      board is printed
-      board is saved */
-      return null;
+   public Player(char mark) {
+      this.mark = mark;
+      this.input = new UserInput();
+      this.output = new UserOutput();
    }
 
-   public Board moveOfO(){
-     /* player chooses position
-      mark is placed
-      mark added to board,
-      board is printed
-      board is saved */
-      return null;
+   public char getMark() {
+      return mark;
    }
 
+   public void move(Board board) {
+      // player chooses position
+      //check if available
+      while (true) {
+         Coordinates move = input.getMove();
+         if (board.isEmpty(move.getRow(), move.getColumn())) {
+            // mark added to board
+            board.setChar(move.getRow(), move.getColumn(), mark);
+            return;
+         } else {
+            output.promptPositionNotAvailable();
+         }
+      }
+   }
 
 }
