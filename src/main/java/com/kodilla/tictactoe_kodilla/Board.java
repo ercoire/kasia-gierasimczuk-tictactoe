@@ -31,4 +31,5 @@ public class Board {
    public boolean isEmpty(int row, int column) {
       return getChar(row, column) == ' ';
    }
+
 }
