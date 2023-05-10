@@ -4,7 +4,13 @@ import java.util.Scanner;
 
 public class UserInput {
 
-   private final Scanner scanner = new Scanner(System.in);
+   private final Scanner scanner;
+   private final UserOutput output;
+
+   public UserInput(Scanner scanner, UserOutput output) {
+      this.scanner = scanner;
+      this.output = output;
+   }
 
    public char selectCharacter() {
 
@@ -20,7 +26,7 @@ public class UserInput {
                return charPlayer1;
             }
          }
-         System.out.println("Can't accept this, choose between X and O.");
+         output.promptInvalidCharacter();
       }
    }
 
@@ -39,7 +45,7 @@ public class UserInput {
          } catch (NumberFormatException ignored) {
             //empty
          }
-         System.out.println("Try again with valid position.");
+         output.promptRepeatPositionInput();
       }
    }
 }

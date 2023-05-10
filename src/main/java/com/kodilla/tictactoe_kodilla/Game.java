@@ -1,8 +1,9 @@
 package com.kodilla.tictactoe_kodilla;
 
+import java.util.Scanner;
+
 public class Game {
     // to keep moves in order
-
     private final ResultVerifier verifier;
     private final Board board;
     private final UserInput input;
@@ -11,8 +12,9 @@ public class Game {
     public Game() {
         this.verifier = new ResultVerifier();
         this.board = new Board();
-        this.input = new UserInput();
         this.output = new UserOutput();
+        this.input = new UserInput(new Scanner(System.in), output);
+
     }
 
     public void play() {

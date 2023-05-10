@@ -34,6 +34,14 @@ public class UserOutput {
       System.out.println("This position is already taken.");
    }
 
+   public void promptInvalidCharacter(){
+      System.out.println("Can't accept this, choose between X and O.");
+   }
+
+   public void promptRepeatPositionInput(){
+      System.out.println("Try again with valid position.");
+   }
+
    public void declareWinner(char c) {
       System.out.println(c + ", you are a winner!");
    }
