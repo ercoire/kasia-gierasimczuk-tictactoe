@@ -5,15 +5,14 @@ public class UserOutput {
    //to print out stuff
 
    public void firstPrintBoard() {
-
       System.out.println("Here is your board with positions where you can put your mark:");
       printPositions();
    }
 
-   public void printBoard(Board board) {
-      System.out.println(" " + board.getChar(0, 0) + " " + "| " + board.getChar(0, 1) + " | " + board.getChar(0, 2));
-      System.out.println(" " + board.getChar(1, 0) + " " + "| " + board.getChar(1, 1) + " | " + board.getChar(1, 2));
-      System.out.println(" " + board.getChar(2, 0) + " " + "| " + board.getChar(2, 1) + " | " + board.getChar(2, 2));
+   public void printBoard(Board board, BoardRowFormatter formatter) {
+      System.out.println(formatter.formatRow(0, board));
+      System.out.println(formatter.formatRow(1, board));
+      System.out.println(formatter.formatRow(2, board));
    }
 
    public void printPositions() {
@@ -23,10 +22,10 @@ public class UserOutput {
    }
 
    public void askForChar() {
-      System.out.println("Player 1, choose your mark - X or O?");
+      System.out.println("Player, choose your mark - X or O?");
    }
 
-   public void askForNextMove(char c) {
+   public void askForNextMove(Character c) {
       System.out.println(c + ", what is your next move?");
    }
 
@@ -38,15 +37,22 @@ public class UserOutput {
       System.out.println("Can't accept this, choose between X and O.");
    }
 
-   public void promptRepeatPositionInput(){
-      System.out.println("Try again with valid position.");
+   public void promptProvideValidPosition(){
+      System.out.println("Provide valid position.");
    }
 
-   public void declareWinner(char c) {
+   public void declareWinner(Character c) {
       System.out.println(c + ", you are a winner!");
    }
 
    public void declareDraw() {
       System.out.println("We have a draw.");
    }
+
+   public void promptTooManyAttempts(){
+      System.out.println("Too many unsuccessful attempts. Run the game again.");
+   }
+
+
+
 }

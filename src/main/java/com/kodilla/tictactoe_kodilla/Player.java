@@ -1,38 +1,35 @@
 package com.kodilla.tictactoe_kodilla;
 
-import java.util.Scanner;
-
 public class Player {
 
-    private char mark;
-    private UserInput input;
-    private UserOutput output;
+    private final Character mark;
+    private final UserInput input;
+    private final UserOutput output;
 
-    public Player(char mark) {
+    public Player(Character mark, UserInput input, UserOutput output) {
         this.mark = mark;
-        this.output = new UserOutput();
-        this.input = new UserInput(new Scanner(System.in), output);
-
+        this.output = output;
+        this.input = input;
     }
 
-    public char getMark() {
+    public Character getMark() {
         return mark;
     }
 
-    public void move(Board board) {
-        // player chooses position
-        //check if available
-        while (true) {
+
+    public void move(Board board) throws OutOfAttemptsException {
+        int counter = 0;
+        do {
             Coordinates move = input.getMove();
             if (board.isEmpty(move.getRow(), move.getColumn())) {
-                // mark added to board
-                board.setChar(move.getRow(), move.getColumn(), mark);
+                board.setChar(move.getRow(), move.getColumn(), getMark());
                 return;
             } else {
                 output.promptPositionNotAvailable();
+                counter++;
             }
-        }
+        } while (counter < 4);
+        throw new
+                OutOfAttemptsException();
     }
-
-
 }

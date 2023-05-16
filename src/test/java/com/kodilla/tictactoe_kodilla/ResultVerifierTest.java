@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-class ResultVerifierTest {
+import static com.kodilla.tictactoe_kodilla.Result.*;
 
-    //Mockito for moves
+class ResultVerifierTest {
 
     //case1 PASSED
     @Nested
@@ -16,51 +16,51 @@ class ResultVerifierTest {
         void should0WinInFirstRow() {
             //Given
             Board board = new Board();
-            ResultVerifier verifier = new ResultVerifier();
+            
             //O in positions 11, 12, 13
-            board.setChar(0, 0, 'O');
-            board.setChar(0, 1, 'O');
-            board.setChar(0, 2, 'O');
+            board.setChar(0, 0, Character.O);
+            board.setChar(0, 1, Character.O);
+            board.setChar(0, 2, Character.O);
 
             //When
-            int expectedRow1 = verifier.getResult(board);
+            Result expectedRow1 = ResultVerifier.getResult(board);
 
             //Then
-            Assertions.assertEquals(expectedRow1, 2);
+            Assertions.assertEquals(expectedRow1, O_WINS);
         }
 
         @Test
         void should0WinInSecondRow() {
             //Given
             Board board = new Board();
-            ResultVerifier verifier = new ResultVerifier();
+             
             //O in positions 21, 22, 23
-            board.setChar(1, 0, 'O');
-            board.setChar(1, 1, 'O');
-            board.setChar(1, 2, 'O');
+            board.setChar(1, 0, Character.O);
+            board.setChar(1, 1, Character.O);
+            board.setChar(1, 2, Character.O);
 
             //When
-            int expectedRow2 = verifier.getResult(board);
+            Result expectedRow2 = ResultVerifier.getResult(board);
 
             //Then
-            Assertions.assertEquals(expectedRow2, 2);
+            Assertions.assertEquals(expectedRow2, O_WINS);
         }
 
         @Test
         void should0WinInThirdRow() {
             //Given
             Board board = new Board();
-            ResultVerifier verifier = new ResultVerifier();
+             
             //O in positions 31, 32, 33
-            board.setChar(2, 0, 'O');
-            board.setChar(2, 1, 'O');
-            board.setChar(2, 2, 'O');
+            board.setChar(2, 0, Character.O);
+            board.setChar(2, 1, Character.O);
+            board.setChar(2, 2, Character.O);
 
             //When
-            int expectedCol3 = verifier.getResult(board);
+            Result expectedCol3 = ResultVerifier.getResult(board);
 
             //Then
-            Assertions.assertEquals(expectedCol3, 2);
+            Assertions.assertEquals(expectedCol3, O_WINS);
         }
     }
 
@@ -72,50 +72,50 @@ class ResultVerifierTest {
         void should0WinInFirstColumn() {
             //Given
             Board board = new Board();
-            ResultVerifier verifier = new ResultVerifier();
+            
             //O in positions 11, 12, 13
-            board.setChar(0, 0, 'O');
-            board.setChar(0, 1, 'O');
-            board.setChar(0, 2, 'O');
+            board.setChar(0, 0, Character.O);
+            board.setChar(0, 1, Character.O);
+            board.setChar(0, 2, Character.O);
             //When
-            int expectedCol1 = verifier.getResult(board);
+            Result expectedCol1 = ResultVerifier.getResult(board);
 
             //Then
-            Assertions.assertEquals(expectedCol1, 2);
+            Assertions.assertEquals(expectedCol1, O_WINS);
         }
 
         @Test
         void should0WinInSecondColumn() {
             //Given
             Board board = new Board();
-            ResultVerifier verifier = new ResultVerifier();
+            
             //O in positions 21, 22, 23
-            board.setChar(1, 0, 'O');
-            board.setChar(1, 1, 'O');
-            board.setChar(1, 2, 'O');
+            board.setChar(1, 0, Character.O);
+            board.setChar(1, 1, Character.O);
+            board.setChar(1, 2, Character.O);
 
             //When
-            int expectedCol2 = verifier.getResult(board);
+            Result expectedCol2 = ResultVerifier.getResult(board);
 
             //Then
-            Assertions.assertEquals(expectedCol2, 2);
+            Assertions.assertEquals(expectedCol2, O_WINS);
         }
 
         @Test
         void should0WinInThirdColumn() {
             //Given
             Board board = new Board();
-            ResultVerifier verifier = new ResultVerifier();
+            
             //O in positions 31, 32, 33
-            board.setChar(2, 0, 'O');
-            board.setChar(2, 1, 'O');
-            board.setChar(2, 2, 'O');
+            board.setChar(2, 0, Character.O);
+            board.setChar(2, 1, Character.O);
+            board.setChar(2, 2, Character.O);
 
             //When
-            int expectedCol3 = verifier.getResult(board);
+            Result expectedCol3 = ResultVerifier.getResult(board);
 
             //Then
-            Assertions.assertEquals(expectedCol3, 2);
+            Assertions.assertEquals(expectedCol3, O_WINS);
         }
     }
 
@@ -128,17 +128,17 @@ class ResultVerifierTest {
 
             //Given
             Board board = new Board();
-            ResultVerifier verifier = new ResultVerifier();
+            
             //O in positions 11, 12, 13
-            board.setChar(0, 0, 'O');
-            board.setChar(1, 1, 'O');
-            board.setChar(2, 2, 'O');
+            board.setChar(0, 0, Character.O);
+            board.setChar(1, 1, Character.O);
+            board.setChar(2, 2, Character.O);
 
             //When
-            int expectedDiag1 = verifier.getResult(board);
+            Result expectedDiag1 = ResultVerifier.getResult(board);
 
             //Then
-            Assertions.assertEquals(expectedDiag1, 2);
+            Assertions.assertEquals(expectedDiag1, O_WINS);
         }
 
         @Test
@@ -146,17 +146,17 @@ class ResultVerifierTest {
 
             //Given
             Board board = new Board();
-            ResultVerifier verifier = new ResultVerifier();
+            
             //O in positions 31, 22, 13
-            board.setChar(2, 0, 'O');
-            board.setChar(1, 1, 'O');
-            board.setChar(0, 2, 'O');
+            board.setChar(2, 0, Character.O);
+            board.setChar(1, 1, Character.O);
+            board.setChar(0, 2, Character.O);
 
             //When
-            int expectedDiag1 = verifier.getResult(board);
+            Result expectedDiag1 = ResultVerifier.getResult(board);
 
             //Then
-            Assertions.assertEquals(expectedDiag1, 2);
+            Assertions.assertEquals(expectedDiag1, O_WINS);
         }
 
     }
@@ -169,51 +169,49 @@ class ResultVerifierTest {
         void shouldXWinInFirstRow() {
             //Given
             Board board = new Board();
-            ResultVerifier verifier = new ResultVerifier();
             //X in positions 11, 12, 13
-            board.setChar(0, 0, 'X');
-            board.setChar(0, 1, 'X');
-            board.setChar(0, 2, 'X');
+            board.setChar(0, 0, Character.X);
+            board.setChar(0, 1, Character.X);
+            board.setChar(0, 2, Character.X);
 
             //When
-            int expectedRow1 = verifier.getResult(board);
+            Result expectedRow1 = ResultVerifier.getResult(board);
 
             //Then
-            Assertions.assertEquals(expectedRow1, 1);
+            Assertions.assertEquals(expectedRow1, X_WINS);
         }
 
         @Test
         void shouldXWinInSecondRow() {
             //Given
             Board board = new Board();
-            ResultVerifier verifier = new ResultVerifier();
+             
             //X in positions 21, 22, 23
-            board.setChar(1, 0, 'X');
-            board.setChar(1, 1, 'X');
-            board.setChar(1, 2, 'X');
+            board.setChar(1, 0, Character.X);
+            board.setChar(1, 1, Character.X);
+            board.setChar(1, 2, Character.X);
 
             //When
-            int expectedRow2 = verifier.getResult(board);
+            Result expectedRow2 = ResultVerifier.getResult(board);
 
             //Then
-            Assertions.assertEquals(expectedRow2, 1);
+            Assertions.assertEquals(expectedRow2, X_WINS);
         }
 
         @Test
         void shouldXWinInThirdRow() {
             //Given
             Board board = new Board();
-            ResultVerifier verifier = new ResultVerifier();
             //X in positions 31, 32, 33
-            board.setChar(2, 0, 'X');
-            board.setChar(2, 1, 'X');
-            board.setChar(2, 2, 'X');
+            board.setChar(2, 0, Character.X);
+            board.setChar(2, 1, Character.X);
+            board.setChar(2, 2, Character.X);
 
             //When
-            int expectedCol3 = verifier.getResult(board);
+            Result expectedCol3 = ResultVerifier.getResult(board);
 
             //Then
-            Assertions.assertEquals(expectedCol3, 1);
+            Assertions.assertEquals(expectedCol3, X_WINS);
         }
     }
 
@@ -225,50 +223,49 @@ class ResultVerifierTest {
         void shouldXWinInFirstColumn() {
             //Given
             Board board = new Board();
-            ResultVerifier verifier = new ResultVerifier();
             //X in positions 11, 12, 13
-            board.setChar(0, 0, 'X');
-            board.setChar(0, 1, 'X');
-            board.setChar(0, 2, 'X');
+            board.setChar(0, 0, Character.X);
+            board.setChar(0, 1, Character.X);
+            board.setChar(0, 2, Character.X);
             //When
-            int expectedCol1 = verifier.getResult(board);
+            Result expectedCol1 = ResultVerifier.getResult(board);
 
             //Then
-            Assertions.assertEquals(expectedCol1, 1);
+            Assertions.assertEquals(expectedCol1, X_WINS);
         }
 
         @Test
         void shouldXWinInSecondColumn() {
             //Given
             Board board = new Board();
-            ResultVerifier verifier = new ResultVerifier();
+             
             //X in positions 21, 22, 23
-            board.setChar(1, 0, 'X');
-            board.setChar(1, 1, 'X');
-            board.setChar(1, 2, 'X');
+            board.setChar(1, 0, Character.X);
+            board.setChar(1, 1, Character.X);
+            board.setChar(1, 2, Character.X);
 
             //When
-            int expectedCol2 = verifier.getResult(board);
+            Result expectedCol2 = ResultVerifier.getResult(board);
 
             //Then
-            Assertions.assertEquals(expectedCol2, 1);
+            Assertions.assertEquals(expectedCol2, X_WINS);
         }
 
         @Test
         void shouldXWinInThirdColumn() {
             //Given
             Board board = new Board();
-            ResultVerifier verifier = new ResultVerifier();
+            
             //X in positions 31, 32, 33
-            board.setChar(2, 0, 'X');
-            board.setChar(2, 1, 'X');
-            board.setChar(2, 2, 'X');
+            board.setChar(2, 0, Character.X);
+            board.setChar(2, 1, Character.X);
+            board.setChar(2, 2, Character.X);
 
             //When
-            int expectedCol3 = verifier.getResult(board);
+            Result expectedCol3 = ResultVerifier.getResult(board);
 
             //Then
-            Assertions.assertEquals(expectedCol3, 1);
+            Assertions.assertEquals(expectedCol3, X_WINS);
         }
     }
 
@@ -281,17 +278,17 @@ class ResultVerifierTest {
 
             //Given
             Board board = new Board();
-            ResultVerifier verifier = new ResultVerifier();
+             
             //X in positions 11, 12, 13
-            board.setChar(0, 0, 'X');
-            board.setChar(1, 1, 'X');
-            board.setChar(2, 2, 'X');
+            board.setChar(0, 0, Character.X);
+            board.setChar(1, 1, Character.X);
+            board.setChar(2, 2, Character.X);
 
             //When
-            int expectedDiag1 = verifier.getResult(board);
+            Result expectedDiag1 = ResultVerifier.getResult(board);
 
             //Then
-            Assertions.assertEquals(expectedDiag1, 1);
+            Assertions.assertEquals(expectedDiag1, X_WINS);
         }
 
         @Test
@@ -299,17 +296,17 @@ class ResultVerifierTest {
 
             //Given
             Board board = new Board();
-            ResultVerifier verifier = new ResultVerifier();
+             
             //X in positions 31, 22, 13
-            board.setChar(2, 0, 'X');
-            board.setChar(1, 1, 'X');
-            board.setChar(0, 2, 'X');
+            board.setChar(2, 0, Character.X);
+            board.setChar(1, 1, Character.X);
+            board.setChar(0, 2, Character.X);
 
             //When
-            int expectedDiag1 = verifier.getResult(board);
+            Result expectedDiag1 = ResultVerifier.getResult(board);
 
             //Then
-            Assertions.assertEquals(expectedDiag1, 1);
+            Assertions.assertEquals(expectedDiag1, X_WINS);
         }
 
     }
@@ -322,30 +319,31 @@ class ResultVerifierTest {
         void shouldResultInDraw() {
             //Given
             Board board = new Board();
-            ResultVerifier verifier = new ResultVerifier();
+             
 
             //Board is full
             //No line has 3 same chars that are not X/O
-            board.setChar(0, 0, 'X');
-            board.setChar(0, 1, 'O');
-            board.setChar(0, 2, 'X');
-            board.setChar(1, 0, 'O');
-            board.setChar(1, 1, 'X');
-            board.setChar(1, 2, 'O');
-            board.setChar(2, 0, 'O');
-            board.setChar(2, 1, 'X');
-            board.setChar(2, 2, 'O');
+            board.setChar(0, 0, Character.X);
+            board.setChar(0, 1, Character.O);
+            board.setChar(0, 2, Character.X);
+            board.setChar(1, 0, Character.O);
+            board.setChar(1, 1, Character.X);
+            board.setChar(1, 2, Character.O);
+            board.setChar(2, 0, Character.O);
+            board.setChar(2, 1, Character.X);
+            board.setChar(2, 2, Character.O);
 
             //When
-            int expected = verifier.getResult(board);
+            Result expected = ResultVerifier.getResult(board);
 
             //Then
-            Assertions.assertEquals(expected, 3);
+            Assertions.assertEquals(expected, DRAW);
 
         }
     }
 
-    //case8 throwing exceptions
+
 
 
 }
+
