@@ -8,12 +8,13 @@ import static com.kodilla.tictactoe_kodilla.Character.X;
 
 class BoardTest {
     //Tests for setChar()
+ //TODO tests for 10x10
 
     //PASSED
     @Test
     void shouldReturnCharForExistingPosition() {
         //Given
-        Board board = new Board();
+        Board board = new Board(3);
 
         //When
         board.setChar(1, 1, X);
@@ -28,7 +29,7 @@ class BoardTest {
     @Test
     void shouldThrowExceptionWhenPositionOutOfArray() {
         //Given
-        Board board = new Board();
+        Board board = new Board(3);
 
         //When-Then
         Assertions.assertThrowsExactly(ArrayIndexOutOfBoundsException.class, () -> {

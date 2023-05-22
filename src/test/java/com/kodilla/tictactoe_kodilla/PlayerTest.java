@@ -4,10 +4,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.when;
 
 
 class PlayerTest {
+
+    private static final int SIZE = 10;
 
     //passed
     @Test
@@ -18,9 +21,10 @@ class PlayerTest {
         UserOutput outputMock = Mockito.mock(UserOutput.class);
         Player player = new Player(Character.O, inputMock, outputMock);
 
-        when(inputMock.getMove()).thenReturn(new Coordinates(0,0)).thenReturn(new Coordinates(1,1));
-        when(boardMock.isEmpty(0,0)).thenReturn(false);
-        when(boardMock.isEmpty(1,1)).thenReturn(true);
+        when(boardMock.getSize()).thenReturn(SIZE);
+        when(inputMock.getMove(SIZE)).thenReturn(new Coordinates(0, 0)).thenReturn(new Coordinates(1, 1));
+        when(boardMock.isEmpty(0, 0)).thenReturn(false);
+        when(boardMock.isEmpty(1, 1)).thenReturn(true);
 
         //When
         player.move(boardMock);
@@ -38,10 +42,35 @@ class PlayerTest {
         UserOutput outputMock = Mockito.mock(UserOutput.class);
         Player player = new Player(Character.O, inputMock, outputMock);
 
-        when(inputMock.getMove()).thenReturn(new Coordinates(1,1));
-        when(boardMock.isEmpty(1,1)).thenReturn(false);
+        when(boardMock.getSize()).thenReturn(SIZE);
+        when(inputMock.getMove(SIZE)).thenReturn(new Coordinates(1, 1));
+        when(boardMock.isEmpty(1, 1)).thenReturn(false);
 
-        Assertions.assertThrows(OutOfAttemptsException.class, ()->player.move(boardMock));
-        Mockito.verify(inputMock, times(4)).getMove();
+        //When-Then
+        Assertions.assertThrows(OutOfAttemptsException.class, () -> player.move(boardMock));
+        Mockito.verify(inputMock, times(4)).getMove(SIZE);
+    }
+
+    @Test
+    void shouldUseCoordinatesToMakeAValidMove() {
+        //Given
+        Board boardMock = Mockito.mock(Board.class);
+        ComputerInput computerInputMock = Mockito.mock(ComputerInput.class);
+        UserOutput outputMock = Mockito.mock(UserOutput.class);
+        UserInput inputMock = Mockito.mock(UserInput.class);
+        Player player = new Player(Character.O, inputMock, outputMock);
+
+        when(computerInputMock.computerPicksPosition(boardMock)).thenReturn(new Coordinates(0, 1),
+                new Coordinates(1, 0),
+                new Coordinates(2, 2));
+        when(boardMock.isEmpty(0, 1)).thenReturn(false);
+        when(boardMock.isEmpty(1, 0)).thenReturn(false);
+        when(boardMock.isEmpty(2, 2)).thenReturn(true);
+
+        player.randomMove(boardMock, computerInputMock);
+
+
+        Mockito.verify(computerInputMock, times(3)).computerPicksPosition(boardMock);
+        Mockito.verify(boardMock, times(1)).setChar(2, 2, Character.O);
     }
 }

@@ -75,14 +75,14 @@ class UserInputTest {
     class TestsForCoordinates {
 
         @Test
-        void shouldReturnCoordinatesFor11() throws OutOfAttemptsException {
+        void shouldReturnCoordinatesFor00() throws OutOfAttemptsException {
             //Given
             UserInput input = new UserInput(mockScanner, mockOutput);
-            when(mockScanner.nextLine()).thenReturn("11");
+            when(mockScanner.nextLine()).thenReturn("00");
 
 
             //When
-            Coordinates actual = input.getMove();
+            Coordinates actual = input.getMove(3);
 
             //Then
             assertEquals(0, actual.getRow());
@@ -90,13 +90,13 @@ class UserInputTest {
         }
 
         @Test
-        void shouldReturnCoordinatesFor33() throws OutOfAttemptsException {
+        void shouldReturnCoordinatesFor22() throws OutOfAttemptsException {
             //Given
             UserInput input = new UserInput(mockScanner, mockOutput);
-            when(mockScanner.nextLine()).thenReturn("33");
+            when(mockScanner.nextLine()).thenReturn("22");
 
             //When
-            Coordinates actual = input.getMove();
+            Coordinates actual = input.getMove(3);
 
             //Then
             assertEquals(2, actual.getRow());
@@ -113,7 +113,7 @@ class UserInputTest {
 
 
             //When
-            Coordinates actual = input.getMove();
+            Coordinates actual = input.getMove(3);
 
             //Then
             verify(mockOutput, times(3)).promptProvideValidPosition();
@@ -131,8 +131,8 @@ class UserInputTest {
 
 
             //When-Then
-            Assertions.assertThrowsExactly(OutOfAttemptsException.class, input::getMove);
-            verify(mockScanner, times(5)).nextLine();
+            Assertions.assertThrowsExactly(OutOfAttemptsException.class, () -> input.getMove(3));
+            verify(mockScanner, times(8)).nextLine();
         }
     }
 }

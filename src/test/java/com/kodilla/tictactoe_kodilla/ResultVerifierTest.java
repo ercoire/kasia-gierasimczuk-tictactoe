@@ -15,7 +15,7 @@ class ResultVerifierTest {
         @Test
         void should0WinInFirstRow() {
             //Given
-            Board board = new Board();
+            Board board = new Board(size);
             
             //O in positions 11, 12, 13
             board.setChar(0, 0, Character.O);
@@ -32,7 +32,7 @@ class ResultVerifierTest {
         @Test
         void should0WinInSecondRow() {
             //Given
-            Board board = new Board();
+            Board board = new Board(size);
              
             //O in positions 21, 22, 23
             board.setChar(1, 0, Character.O);
@@ -49,7 +49,7 @@ class ResultVerifierTest {
         @Test
         void should0WinInThirdRow() {
             //Given
-            Board board = new Board();
+            Board board = new Board(size);
              
             //O in positions 31, 32, 33
             board.setChar(2, 0, Character.O);
@@ -71,7 +71,7 @@ class ResultVerifierTest {
         @Test
         void should0WinInFirstColumn() {
             //Given
-            Board board = new Board();
+            Board board = new Board(size);
             
             //O in positions 11, 12, 13
             board.setChar(0, 0, Character.O);
@@ -87,7 +87,7 @@ class ResultVerifierTest {
         @Test
         void should0WinInSecondColumn() {
             //Given
-            Board board = new Board();
+            Board board = new Board(size);
             
             //O in positions 21, 22, 23
             board.setChar(1, 0, Character.O);
@@ -104,7 +104,7 @@ class ResultVerifierTest {
         @Test
         void should0WinInThirdColumn() {
             //Given
-            Board board = new Board();
+            Board board = new Board(size);
             
             //O in positions 31, 32, 33
             board.setChar(2, 0, Character.O);
@@ -127,7 +127,7 @@ class ResultVerifierTest {
         void shouldMakeOWinInTopDiagonal() {
 
             //Given
-            Board board = new Board();
+            Board board = new Board(size);
             
             //O in positions 11, 12, 13
             board.setChar(0, 0, Character.O);
@@ -145,7 +145,7 @@ class ResultVerifierTest {
         void shouldMakeOWinInBottomDiagonal() {
 
             //Given
-            Board board = new Board();
+            Board board = new Board(size);
             
             //O in positions 31, 22, 13
             board.setChar(2, 0, Character.O);
@@ -168,7 +168,7 @@ class ResultVerifierTest {
         @Test
         void shouldXWinInFirstRow() {
             //Given
-            Board board = new Board();
+            Board board = new Board(size);
             //X in positions 11, 12, 13
             board.setChar(0, 0, Character.X);
             board.setChar(0, 1, Character.X);
@@ -184,7 +184,7 @@ class ResultVerifierTest {
         @Test
         void shouldXWinInSecondRow() {
             //Given
-            Board board = new Board();
+            Board board = new Board(size);
              
             //X in positions 21, 22, 23
             board.setChar(1, 0, Character.X);
@@ -201,7 +201,7 @@ class ResultVerifierTest {
         @Test
         void shouldXWinInThirdRow() {
             //Given
-            Board board = new Board();
+            Board board = new Board(size);
             //X in positions 31, 32, 33
             board.setChar(2, 0, Character.X);
             board.setChar(2, 1, Character.X);
@@ -222,7 +222,7 @@ class ResultVerifierTest {
         @Test
         void shouldXWinInFirstColumn() {
             //Given
-            Board board = new Board();
+            Board board = new Board(size);
             //X in positions 11, 12, 13
             board.setChar(0, 0, Character.X);
             board.setChar(0, 1, Character.X);
@@ -237,7 +237,7 @@ class ResultVerifierTest {
         @Test
         void shouldXWinInSecondColumn() {
             //Given
-            Board board = new Board();
+            Board board = new Board(size);
              
             //X in positions 21, 22, 23
             board.setChar(1, 0, Character.X);
@@ -254,7 +254,7 @@ class ResultVerifierTest {
         @Test
         void shouldXWinInThirdColumn() {
             //Given
-            Board board = new Board();
+            Board board = new Board(size);
             
             //X in positions 31, 32, 33
             board.setChar(2, 0, Character.X);
@@ -277,7 +277,7 @@ class ResultVerifierTest {
         void shouldMakeOWinInTopDiagonal() {
 
             //Given
-            Board board = new Board();
+            Board board = new Board(size);
              
             //X in positions 11, 12, 13
             board.setChar(0, 0, Character.X);
@@ -295,7 +295,7 @@ class ResultVerifierTest {
         void shouldMakeOWinInBottomDiagonal() {
 
             //Given
-            Board board = new Board();
+            Board board = new Board(size);
              
             //X in positions 31, 22, 13
             board.setChar(2, 0, Character.X);
@@ -318,7 +318,7 @@ class ResultVerifierTest {
         @Test
         void shouldResultInDraw() {
             //Given
-            Board board = new Board();
+            Board board = new Board(size);
              
 
             //Board is full

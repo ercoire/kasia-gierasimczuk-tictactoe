@@ -14,16 +14,19 @@ class GameTest {
     @Test
     void shouldDeclareXWinner() throws OutOfAttemptsException {
         //Given
-        Board board = new Board();
+
+        int size = 3;
         UserInput mockInput = Mockito.mock(UserInput.class);
+        Board board = new Board(size);
+        ComputerInput mockComputerInput = Mockito.mock(ComputerInput.class);
         UserOutput mockOutput = Mockito.mock(UserOutput.class);
         BoardRowFormatter formatter = Mockito.mock(BoardRowFormatter.class);
-        Game game = new Game(board, mockOutput, mockInput, formatter);
+        Game game = new Game(mockOutput, mockInput, mockComputerInput, formatter, board);
         when(mockInput.selectCharacter()).thenReturn(Character.X);
-        when(mockInput.getMove()).thenReturn(new Coordinates(0, 0))
-                .thenReturn(new Coordinates(1, 0))
+        when(mockComputerInput.computerPicksPosition(board)).thenReturn(new Coordinates(1, 0))
+                .thenReturn(new Coordinates(1, 1));
+        when(mockInput.getMove(size)).thenReturn(new Coordinates(0, 0))
                 .thenReturn(new Coordinates(0, 1))
-                .thenReturn(new Coordinates(1, 1))
                 .thenReturn(new Coordinates(0, 2));
 
 

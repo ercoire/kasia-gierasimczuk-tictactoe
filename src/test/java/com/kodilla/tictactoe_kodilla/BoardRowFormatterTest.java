@@ -11,7 +11,7 @@ class BoardRowFormatterTest {
     void shouldCreateLine() {
 
         //Given
-        Board board = new Board();
+        Board board = new Board(size);
         BoardRowFormatter creator = Mockito.spy(new BoardRowFormatter());
 
 
