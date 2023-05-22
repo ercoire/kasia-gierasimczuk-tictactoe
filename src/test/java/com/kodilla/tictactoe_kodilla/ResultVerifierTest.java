@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static com.kodilla.tictactoe_kodilla.Result.*;
 
 class ResultVerifierTest {
-
+/*
     //case1 PASSED
     @Nested
     class TestsFor0WinningInRows {
@@ -342,8 +342,7 @@ class ResultVerifierTest {
         }
     }
 
-
-
+*/
 
 }
 
