@@ -5,37 +5,24 @@ public class ResultVerifier {
 
     public static Result getResult(Board board) {
         //check winning condition
-
-        if (isHorizontal(board)) {
-            Character winningRowChar = checkWinningRowChar(board);
-            if (winningRowChar.equals(Character.X)) {
-                return Result.X_WINS;
-            } else {
-                return Result.O_WINS;
-            }
-        } else if (isVertical(board)) {
-            Character winningColumnChar = checkWinningColumnChar(board);
-            if (winningColumnChar.equals(Character.X)) {
-                return Result.X_WINS;
-            } else {
-                return Result.O_WINS;
-            }
-        } else if (isDiagonal(board)) {
-            if (board.getChar(1, 1).equals(Character.X)) {
-                return Result.X_WINS;
-            } else {
-                return Result.O_WINS;
-            }
-        } else if (isFull(board)) {
+        if ((charWinningVertically(board) == Character.X) || (charWinningHorizontally(board) == Character.X) ||
+                (isDiagonal(board) == Character.X)) {
+            return Result.X_WINS;
+        } else if ((charWinningVertically(board) == Character.O) || (charWinningHorizontally(board) == Character.O) ||
+                (isDiagonal(board) == Character.O)){
+            return Result.O_WINS;
+        }
+        else if (isFull(board)) {
             return Result.DRAW;
         } else {
             return Result.GAME_CONTINUES;
         }
     }
 
+
     private static boolean isFull(Board board) {
-        for (int r = 0; r < 3; r++) {
-            for (int c = 0; c < 3; c++) {
+        for (int r = 0; r < board.getSize(); r++) {
+            for (int c = 0; c < board.getSize(); c++) {
                 if (board.getChar(r, c).equals(Character.SPACE)) {
                     return false;
                 }
@@ -44,49 +31,181 @@ public class ResultVerifier {
         return true;
     }
 
-    private static Character checkWinningRowChar(Board board) {
-        for (int r = 0; r < 3; r++) {
-            Character mark = board.getChar(r, 0);
-            if (areCharactersEqual(mark, board.getChar(r, 1), board.getChar(r, 2))) {
-                return mark;
+
+    private static Character charWinningVertically(Board board) {
+        Character winningChar = Character.SPACE;
+        for (int column = 0; column < board.getSize(); column++) {
+            if (charWinningInColumn(board, column) != Character.SPACE) {
+                 return winningChar;
             }
         }
-        throw new IllegalStateException();
+        return winningChar;
     }
 
-    private static Character checkWinningColumnChar(Board board) {
-        for (int c = 0; c < 3; c++) {
-            Character mark = board.getChar(0, c);
-            if (areCharactersEqual(mark, board.getChar(1, c), board.getChar(2, c))) {
-                return mark;
+    private static Character charWinningInColumn(Board board, int column) {
+        int counter = 0;
+        Character current = Character.SPACE;
+        for (int row = 0; row < board.getSize(); row++) {
+            if (board.isEmpty(row, column)) {
+                counter = 0;
+                current = Character.SPACE;
+            } else {
+                if (current.equals(board.getChar(row, column))) {
+                    counter++;
+                } else {
+                    current = board.getChar(row, column);
+                    counter = 1;
+                }
+            }
+            if (counter == winningStreakLength(board)) {
+                return current;
             }
         }
-        throw new IllegalStateException();
+        return current;
     }
 
-    private static boolean areCharactersEqual(Character a, Character b, Character c) {
-        return a.equals(b) && a.equals(c) && !a.equals(Character.SPACE);
+    private static Character charWinningHorizontally(Board board) {
+        Character winningChar = Character.SPACE;
+        for (int row = 0; row < board.getSize(); row++) {
+            if (charWinningInRow(board, row) != Character.SPACE) {
+                return winningChar;
+            }
+        }
+        return winningChar;
     }
 
-    private static boolean isVertical(Board board) {
-        //if char in all positions in column 1 is the same or 2 or 3
-        return areCharactersEqual(board.getChar(0, 0), board.getChar(1, 0), board.getChar(2, 0)) ||
-                areCharactersEqual(board.getChar(0, 1), board.getChar(1, 1), board.getChar(2, 1)) ||
-                areCharactersEqual(board.getChar(0, 2), board.getChar(1, 2), board.getChar(2, 2));
+    private static Character charWinningInRow (Board board, int row) {
+        int counter = 0;
+        Character current = Character.SPACE;
+        for (int column = 0; column < board.getSize(); column++) {
+            if (board.isEmpty(row, column)) {
+                counter = 0;
+                current = Character.SPACE;
+            } else {
+                if (current.equals(board.getChar(row, column))) {
+                    counter++;
+                } else {
+                    current = board.getChar(row, column);
+                    counter = 1;
+                }
+            }
+            if (counter == winningStreakLength(board)) {
+
+                return current;
+            }
+        }
+        return current;
     }
 
-    private static boolean isHorizontal(Board board) {
-        //if char in all positions in row 1 is the same or 2 or 3
-        return areCharactersEqual(board.getChar(0, 0), board.getChar(0, 1), board.getChar(0, 2)) ||
-                areCharactersEqual(board.getChar(1, 0), board.getChar(1, 1), board.getChar(1, 2)) ||
-                areCharactersEqual(board.getChar(2, 0), board.getChar(2, 1), board.getChar(2, 2));
+
+    private static Character isDiagonal(Board board) {
+        Character current = Character.SPACE;
+        if ((leftDownwardDiagonalsWinningChar(board) != Character.SPACE) || (rightDownwardDiagonalsWinningChar(board) != Character.SPACE)
+                || (leftUpwardDiagonalsWinningChar(board)!= Character.SPACE)
+                || (rightUpwardDiagonalsWinningChar(board)!= Character.SPACE) ) {
+            return current;
+
+        }
+        return current;
     }
 
-    private static boolean isDiagonal(Board board) {
-        //11=22=33 or 31=22=11
-        return areCharactersEqual(board.getChar(0, 0), board.getChar(1, 1), board.getChar(2, 2)) ||
-                areCharactersEqual(board.getChar(2, 0), board.getChar(1, 1), board.getChar(0, 2));
+    private static Character leftDownwardDiagonalsWinningChar(Board board) {
+        int counter = 0;
+        Character current = Character.SPACE;
+        for (int row = 0, column = 0; row < board.getSize() && column < board.getSize(); row++, column++) {
+            if (board.isEmpty(row, column)) {
+                counter = 0;
+                current = Character.SPACE;
+            } else {
+                if (current.equals(board.getChar(row, column))) {
+                    counter++;
+                } else {
+                    current = board.getChar(row, column);
+                    counter = 1;
+                }
+            }
+            if (counter == winningStreakLength(board)) {
+                return current;
+            }
+        }
+        return current;
+    }
+
+    private static Character rightDownwardDiagonalsWinningChar(Board board) {
+        int counter = 0;
+        Character current = Character.SPACE;
+        for (int row = 0, column = 1; row < board.getSize() && column < board.getSize(); row++, column++) {
+            if (board.isEmpty(row, column)) {
+                counter = 0;
+                current = Character.SPACE;
+            } else {
+                if (current.equals(board.getChar(row, column))) {
+                    counter++;
+                } else {
+                    current = board.getChar(row, column);
+                    counter = 1;
+                }
+            }
+            if (counter == winningStreakLength(board)) {
+
+                return current;
+            }
+        }
+        return current;
+    }
+
+    private static Character leftUpwardDiagonalsWinningChar(Board board) {
+        int counter = 0;
+        Character current = Character.SPACE;
+        for (int row = board.getSize() - 1, column = 0; row < 0 && column < board.getSize(); row--, column++) {
+            if (board.isEmpty(row, column)) {
+                counter = 0;
+                current = Character.SPACE;
+            } else {
+                if (current.equals(board.getChar(row, column))) {
+                    counter++;
+                } else {
+                    current = board.getChar(row, column);
+                    counter = 1;
+                }
+            }
+            if (counter == winningStreakLength(board)) {
+
+                return current;
+            }
+        }
+        return current;
     }
 
 
+    private static Character rightUpwardDiagonalsWinningChar(Board board) {
+        int counter = 0;
+        Character current = Character.SPACE;
+        for (int row = board.getSize() - 1, column = 1; row < 0 && column < board.getSize(); row--, column++) {
+            if (board.isEmpty(row, column)) {
+                counter = 0;
+                current = Character.SPACE;
+            } else {
+                if (current.equals(board.getChar(row, column))) {
+                    counter++;
+                } else {
+                    current = board.getChar(row, column);
+                    counter = 1;
+                }
+            }
+            if (counter == winningStreakLength(board)) {
+
+                return current;
+            }
+        }
+        return current;
+    }
+
+    private static int winningStreakLength(Board board) {
+        if (board.getSize() == 3) {
+            return 3;
+        } else {
+            return 5;
+        }
+    }
 }

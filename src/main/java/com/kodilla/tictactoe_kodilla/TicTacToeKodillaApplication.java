@@ -4,18 +4,22 @@ import java.util.Scanner;
 
 public class TicTacToeKodillaApplication {
 
-// to create setup for a particular game
+// creates setup for a particular game
 
     public static void main(String[] args) {
 
-        Game game = new Game(
-                new Board(),
-                new UserOutput(),
-                new UserInput(new Scanner(System.in), new UserOutput()),
-                new BoardRowFormatter()
-        );
+        UserOutput output = new UserOutput();
+        UserInput input = new UserInput(new Scanner(System.in), output);
+        output.askForBoardSize();
+        try {
+            int size = input.selectBoardSize();
+            Board board = new Board(size);
+            Game game = new Game(output, input, new ComputerInput(), new BoardRowFormatter(), board);
 
-        game.play();
+            game.play();
+        } catch (OutOfAttemptsException e) {
+            output.promptTooManyAttempts();
+        }
 
     }
 

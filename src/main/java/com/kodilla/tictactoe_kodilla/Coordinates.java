@@ -5,14 +5,17 @@ public class Coordinates {
     private final int row;
     private final int column;
 
+
     public Coordinates(int row, int column) {
         this.row = row;
         this.column = column;
     }
 
-    public static boolean areCoordinatesValid(int row, int column) {
-        return (row <= 2 && row >= 0 && column <= 2 && column >= 0);
+
+    public static boolean areCoordinatesValid(int row, int column, int boardSize) {
+        return (row < boardSize && row >= 0 && column <= boardSize && column >= 0);
     }
+
 
     public int getRow() {
         return row;

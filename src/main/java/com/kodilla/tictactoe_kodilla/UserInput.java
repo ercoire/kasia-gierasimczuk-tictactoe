@@ -12,6 +12,25 @@ public class UserInput {
         this.output = output;
     }
 
+    public int selectBoardSize() throws OutOfAttemptsException {
+        int boardSize;
+        int counter = 0;
+        do {
+            String input = scanner.nextLine();
+            try {
+                boardSize = Integer.parseInt(input);
+                if (boardSize == 3 || boardSize == 10) {
+                    return boardSize;
+                }
+            } catch (NumberFormatException ignored) {
+            }
+            counter++;
+            output.promptIncorrectBoardSize();
+        }
+        while (counter < 5);
+        throw new OutOfAttemptsException();
+    }
+
     public Character selectCharacter() throws OutOfAttemptsException {
         Character charPlayer1 = null;
         String input;
@@ -33,29 +52,28 @@ public class UserInput {
         return charPlayer1;
     }
 
-    public Coordinates getMove() throws OutOfAttemptsException {
+    public Coordinates getMove(int boardSize) throws OutOfAttemptsException {
         int counter = 0;
         String newInput;
         do {
             output.promptProvideValidPosition();
             newInput = scanner.nextLine();
             try {
-                return createCoordinatesFrom(newInput);
+                return createCoordinatesFrom(newInput, boardSize);
             } catch (IllegalArgumentException e) {
                 counter++;
             }
         }
-        while (counter < 5);
+        while (counter < 8);
         throw new OutOfAttemptsException();
     }
 
-    private static Coordinates createCoordinatesFrom(String newInput) {
+    private static Coordinates createCoordinatesFrom(String newInput, int boardSize) {
         int tempInt = Integer.parseInt(newInput);
         int column = tempInt % 10;
         int row = tempInt / 10;
-        row--;
-        column--;
-        if (Coordinates.areCoordinatesValid(row, column)) {
+
+        if (Coordinates.areCoordinatesValid(row, column, boardSize)) {
             return new Coordinates(row, column);
         }
         throw new IllegalArgumentException();

@@ -1,29 +1,41 @@
 package com.kodilla.tictactoe_kodilla;
 
+import java.util.ArrayList;
+
 import static com.kodilla.tictactoe_kodilla.Character.*;
 
 public class Board {
 
-   private final Character[][] board;
 
-   public Board() {
-      board = new Character[3][3];
-      for (int i = 0; i <3; i++) {
-         for (int j=0; j<3; j++) {
+   private final Character[][] board;
+   private final int size;
+
+
+   public Board(int size) {
+      this.size = size;
+      board = new Character[this.size][this.size];
+      for (int i = 0; i < this.size; i++) {
+         for (int j = 0; j< this.size; j++) {
             board[i][j] = SPACE;
          }
       }
    }
 
-   /*indexes 3x3:
-   [0][0] [0][1] [0][2]
-   [1][0] [1][1] [1][2]
-   [2][0] [2][1] [2][2]
-    */
+
+   private final ArrayList<Coordinates> positionsTaken = new ArrayList<>();
+
+   public ArrayList<Coordinates> getPositionsTaken() {
+      return positionsTaken;
+   }
+
+
+   public int getSize() {
+      return size;
+   }
+
 
 
    public Character getChar(int row, int column) {
-      //returns mark on a specified position on the board
       return board[row][column];
    }
 
