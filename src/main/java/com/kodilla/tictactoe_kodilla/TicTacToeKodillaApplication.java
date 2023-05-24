@@ -1,5 +1,6 @@
 package com.kodilla.tictactoe_kodilla;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class TicTacToeKodillaApplication {
@@ -14,14 +15,11 @@ public class TicTacToeKodillaApplication {
         try {
             int size = input.selectBoardSize();
             Board board = new Board(size);
-            Game game = new Game(output, input, new ComputerInput(), new BoardRowFormatter(), board);
+            Game game = new Game(output, input, new ComputerInput(new Random()), new BoardRowFormatter(), board);
 
             game.play();
         } catch (OutOfAttemptsException e) {
             output.promptTooManyAttempts();
         }
-
     }
-
-
 }

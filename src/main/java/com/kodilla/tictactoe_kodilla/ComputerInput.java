@@ -6,18 +6,16 @@ import java.util.Random;
 
 public class ComputerInput {
 
-    private final Random random = new Random();
+    private final Random random;
 
+    public ComputerInput(Random random) {
+        this.random = random;
+    }
 
     public Coordinates computerPicksPosition(Board board) {
-        ArrayList<Coordinates> positions = board.getPositionsTaken();
-        Coordinates computersPick;
-        do {
-            computersPick = new Coordinates(random.nextInt(board.getSize()), random.nextInt(board.getSize()));
-        }
-        while (positions.contains(computersPick));
-        positions.add(computersPick);
-        return computersPick;
+        ArrayList<Coordinates> availablePositions = board.getPositionsEmpty();
+        int index = random.nextInt(availablePositions.size());
+        return availablePositions.remove(index);
     }
 
 

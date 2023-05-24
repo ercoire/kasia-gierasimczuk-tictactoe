@@ -1,7 +1,5 @@
 package com.kodilla.tictactoe_kodilla;
 
-import java.util.ArrayList;
-
 public class Player {
 
     private final Character mark;
@@ -25,7 +23,7 @@ public class Player {
             Coordinates move = input.getMove(board.getSize());
             if (board.isEmpty(move.getRow(), move.getColumn())) {
                 board.setChar(move.getRow(), move.getColumn(), getMark());
-                board.getPositionsTaken().add(move);
+                board.getPositionsEmpty().remove(move);
                 return;
             } else {
                 output.promptPositionNotAvailable();

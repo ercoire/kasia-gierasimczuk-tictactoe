@@ -14,7 +14,6 @@ public class Game {
 
 
     public Game(UserOutput output, UserInput input, ComputerInput computerInput, BoardRowFormatter formatter, Board board) {
-        // to keep moves in order
         this.board = board;
         this.output = output;
         this.input = input;
@@ -25,15 +24,14 @@ public class Game {
     }
 
     public void play() {
-        //keeps the whole game running
 
+        //keeps the whole game running
         try {
             Character mark1 = input.selectCharacter();
             Player player1 = new Player(mark1, input, output);
             Player player2 = new Player(determinePlayer2Char(mark1), input, output);
             output.firstPrintBoard(board.getSize());
 
-            //making a move
             executeTurnAgainstComputer(board, player1, player2);
         } catch (OutOfAttemptsException e) {
             output.promptTooManyAttempts();

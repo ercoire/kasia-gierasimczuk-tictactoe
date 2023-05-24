@@ -1,39 +1,71 @@
 package com.kodilla.tictactoe_kodilla;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static com.kodilla.tictactoe_kodilla.Character.O;
 import static com.kodilla.tictactoe_kodilla.Character.X;
 
 class BoardTest {
-    //Tests for setChar()
- //TODO tests for 10x10
 
-    //PASSED
-    @Test
-    void shouldReturnCharForExistingPosition() {
-        //Given
-        Board board = new Board(3);
+    
+    @Nested
+    class TestsFor3x3 {
+        
+        private static final int SIZE = 3;
 
-        //When
-        board.setChar(1, 1, X);
-        Character expectedX = board.getChar(1, 1);
+        @Test
+        void shouldReturnCharForExistingPosition() {
+            //Given
+            Board board = new Board(SIZE);
 
-        //Then
-        Assertions.assertEquals(expectedX, X);
+            //When
+            board.setChar(1, 1, X);
+            Character actualX = board.getChar(1, 1);
+
+            //Then
+            Assertions.assertEquals(X, actualX);
+        }
+
+
+        @Test
+        void shouldThrowExceptionWhenPositionOutOfArray() {
+            
+            //Given
+            Board board = new Board(SIZE);
+
+            //When-Then
+            Assertions.assertThrowsExactly(ArrayIndexOutOfBoundsException.class, () -> board.setChar(5, 5, O));
+        }
     }
 
+    @Nested
+    class TestsFor10x10{
+        
+        private static final int SIZE = 10;
 
-    //case8 for Board PASSED
-    @Test
-    void shouldThrowExceptionWhenPositionOutOfArray() {
-        //Given
-        Board board = new Board(3);
+        @Test
+        void shouldReturnCharForExistingPosition() {
+            //Given
+            Board board = new Board(SIZE);
 
-        //When-Then
-        Assertions.assertThrowsExactly(ArrayIndexOutOfBoundsException.class, () -> {
-            board.setChar(5, 5, O);
-        });
+            //When
+            board.setChar(1, 1, X);
+            Character actualX = board.getChar(1, 1);
+
+            //Then
+            Assertions.assertEquals(X, actualX);
+        }
+
+
+        @Test
+        void shouldThrowExceptionWhenPositionOutOfArray() {
+            //Given
+            Board board = new Board(SIZE);
+
+            //When-Then
+            Assertions.assertThrowsExactly(ArrayIndexOutOfBoundsException.class, () -> board.setChar(15, 15, O));
+        }
     }
 }
